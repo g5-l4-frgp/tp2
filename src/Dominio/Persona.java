@@ -6,7 +6,18 @@ public class Persona {
 	private String Apellido;
 	private int DNI;
 	
+	public Persona() {
+		Nombre = "Sin Nombre";
+		Apellido = "Sin Apellido";
+		DNI = 11111111;
+	}
 	
+	public Persona(String Nombre, String Apellido, int DNI)
+	{
+		this.Nombre = Nombre;
+		this.Apellido = Apellido;
+		this.DNI = DNI;
+	}	
 	public String getNombre() {
 		return Nombre;
 	}
@@ -26,8 +37,9 @@ public class Persona {
 		DNI = dNI;
 	}
 
+	@Override
+	public String toString() {
+		return "La Persona se llama " + Nombre + ", Apellido=" + Apellido + ", con DNI=" + DNI;
+	}
 	
-	 
-	
-
 }
