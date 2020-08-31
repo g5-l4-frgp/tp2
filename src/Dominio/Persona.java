@@ -1,6 +1,8 @@
 package Dominio;
 
-public class Persona {
+import java.util.Comparator;
+
+public class Persona implements Comparable<Persona> {
 	
 	private String Nombre;
 	private String Apellido;
@@ -74,6 +76,12 @@ public class Persona {
 		} else if (!Nombre.equals(other.Nombre))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Persona o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

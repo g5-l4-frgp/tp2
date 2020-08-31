@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.TreeSet;
 
 public class Archivo {
 
@@ -36,17 +37,26 @@ public class Archivo {
 		return false;
 	}
 	
-	public void Leer() {
+	public TreeSet<Persona> Leer() {
 		FileReader entrada;
+		TreeSet<Persona>lista= new TreeSet<Persona>();
+		Persona personita= new Persona();
+		String limite="[-]";
+		String [] listaPersona;
 		try {
 			entrada= new FileReader(RUTA);
 			BufferedReader buffer= new BufferedReader(entrada);
-			
 			String linea= "";
 			while(linea!=null)
 			{
-				System.out.println(linea);
-				linea=buffer.readLine();
+				
+				listaPersona=buffer.readLine().split(limite);
+				personita.setNombre(listaPersona[0]);
+				personita.setApellido(listaPersona[1]);
+				personita.setDNI(Integer.parseInt(listaPersona[2]));
+				lista.add(personita);
+				
+				
 			}
 			buffer.close();
 			entrada.close();
@@ -55,6 +65,7 @@ public class Archivo {
 		{
 			e.printStackTrace();
 		}
+		return lista;
 	}
 	
 	public boolean Escribir(String linea) {
