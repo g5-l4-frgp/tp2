@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.TreeSet;
 
 public class Archivo {
@@ -39,24 +40,21 @@ public class Archivo {
 	
 	public TreeSet<Persona> Leer() {
 		FileReader entrada;
-		TreeSet<Persona>lista= new TreeSet<Persona>();
-		Persona personita= new Persona();
-		String limite="[-]";
+		TreeSet<Persona>listaTreeSet= new TreeSet<Persona>();
 		String [] listaPersona;
+		ArrayList<Persona> lista = new ArrayList<Persona>();
 		try {
 			entrada= new FileReader(RUTA);
 			BufferedReader buffer= new BufferedReader(entrada);
-			String linea= "";
-			while(linea!=null)
+			String linea= null;
+			while((linea = buffer.readLine())!= null)
 			{
-				
-				listaPersona=buffer.readLine().split(limite);
+				Persona personita= new Persona();
+				listaPersona= linea.split("-");
 				personita.setNombre(listaPersona[0]);
 				personita.setApellido(listaPersona[1]);
 				personita.setDNI(Integer.parseInt(listaPersona[2]));
 				lista.add(personita);
-				
-				
 			}
 			buffer.close();
 			entrada.close();
@@ -65,7 +63,8 @@ public class Archivo {
 		{
 			e.printStackTrace();
 		}
-		return lista;
+		listaTreeSet.addAll(lista);
+		return listaTreeSet;
 	}
 	
 	public boolean Escribir(String linea) {

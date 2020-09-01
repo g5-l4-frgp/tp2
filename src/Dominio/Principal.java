@@ -13,6 +13,7 @@ public class Principal {
 		System.out.println(" ARCHIVO PERSONASEMPRESA : ");
 		
 			lista=archivo.Leer();
+
 			for(Persona e:lista)
 			{
 				System.out.println(e.getNombre());
