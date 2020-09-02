@@ -1,5 +1,7 @@
 package Dominio;
 
+import java.text.Collator;
+import java.util.Locale;
 
 public class Persona implements Comparable<Persona> {
 	
@@ -79,11 +81,26 @@ public class Persona implements Comparable<Persona> {
 
 	@Override
 	public int compareTo(Persona o) {
-		if(o.DNI==this.DNI)
-		return 0;
-		if(o.DNI < this.DNI)
+		Collator c = Collator.getInstance(new Locale("es"));
+		c.setStrength(Collator.PRIMARY);
+		if(o.DNI==this.DNI) {
+			if(o.Nombre.equals(this.Nombre)) {
+				if(o.Apellido.equals(this.Apellido)) {
+					return 0;
+				}
+			}
+		}
+		if(c.compare(o.Nombre, this.Nombre) > 0 )
 		return 1;
 		return -1;
+	}
+	
+	public boolean validarDni(String dni) {
+		if(dni.length() == 8) {
+			return true;
+		}
+		return false;
+		
 	}
 	
 }
